@@ -1,0 +1,6 @@
+﻿namespace SpicyInvader
+{
+    class Missile
+    {
+    }
+}

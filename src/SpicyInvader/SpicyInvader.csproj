@@ -43,8 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enemy.cs" />
+    <Compile Include="EnemyMissile.cs" />
+    <Compile Include="FriendlyMissile.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="Level.cs" />
+    <Compile Include="Missile.cs" />
+    <Compile Include="Octopus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ship.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
