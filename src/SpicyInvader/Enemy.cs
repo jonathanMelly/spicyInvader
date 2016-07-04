@@ -8,7 +8,7 @@ namespace SpicyInvader
     /// <summary>
     /// Gestion des éléments communs à tous les ennemis
     /// </summary>
-    class Enemy : EnemyMissile
+    public class Enemy : EnemyMissile
     {
     }
 }

@@ -1,6 +1,11 @@
-﻿namespace SpicyInvader
+﻿//Lieu : ETML
+//Date : 2016
+//Auteur : JMY/CHA
+//Description : Description communes à tous les ennemis
+
+namespace SpicyInvader
 {
-    class Octopus : Enemy
+    public class Octopus : Enemy
     {
     }
 }
