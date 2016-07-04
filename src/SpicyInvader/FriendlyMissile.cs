@@ -13,23 +13,43 @@ namespace SpicyInvader
 
         private readonly Ship ship;
 
-        public FriendlyMissile(Ship ship, short x, short y) : base(x, y)
+        public FriendlyMissile(ConsoleWrapper console, Ship ship, short x, short y) : base(console, x, y)
         {
             this.ship = ship;
         }
 
 
-        protected override bool computeNewPosition()
+        protected override bool goToNextPosition(Enemy[] enemies)
         {
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                Enemy enemy = enemies[i];
+
+                //Ennemi touché
+                if (enemy != null && enemy.getX() == x && enemy.getY() == y)
+                {
+                    ship.addScore(enemy.getReward());
+                    enemy.erase();
+                    enemies[i] = null;
+                    return missileExploded();
+                }
+            }
+
             //Missile meurt en haut de l'écran
-            if (y > 1)
+            if (y > 0)
             {
                 y--;
                 return true;
             }
-            ship.setMissileDestroyed();
-            return false;
 
+            return missileExploded();
+
+        }
+
+        private bool missileExploded()
+        {
+            ship.setMissileExploded();
+            return false;
         }
 
         public override string getSprite()

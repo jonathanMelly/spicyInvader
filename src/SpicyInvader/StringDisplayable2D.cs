@@ -11,22 +11,34 @@ namespace SpicyInvader
         public abstract string getSprite();
         protected abstract ConsoleColor getColor();
 
-        public StringDisplayable2D(int x, int y)
+        protected readonly ConsoleWrapper console;
+
+        public StringDisplayable2D(ConsoleWrapper console,int x, int y)
         {
             this.x = Convert.ToInt16(x);
             this.y = Convert.ToInt16(y);
+
+            this.console = console;
         }
 
         public void erase()
         {
-            Console.SetCursorPosition(x, y);
-            Console.Write(new String(' ', getSprite().Length));
+            console.setCursorPosition(x, y);
+            console.write(new String(' ', getSprite().Length));
+            resetCursor();
         }
+
         public void display()
         {
-            Console.SetCursorPosition(x, y);
-            Console.ForegroundColor = getColor();
-            Console.Write(getSprite());
+            console.setCursorPosition(x, y);
+            console.setForegroundColor( getColor());
+            console.write(getSprite());
+            resetCursor();
+        }
+
+        private void resetCursor()
+        {
+            console.setCursorPosition(0, 0);
         }
 
         public short getX()

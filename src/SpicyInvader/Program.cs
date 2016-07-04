@@ -7,7 +7,7 @@ namespace SpicyInvader
         static void Main(string[] args)
         {
             
-            Game game = new Game();
+            Game game = new Game(new MsDosConsole());
             game.start();
 
 

@@ -7,29 +7,29 @@ using System;
 
 namespace SpicyInvader
 {
-    public abstract class Missile:StringDisplayable2D
+    public abstract class Missile : StringDisplayable2D
     {
 
-        public Missile(int x, int y) : base(x, y)
+        public Missile(ConsoleWrapper console, int x, int y) : base(console, x, y)
         {
             //Parent
         }
 
-        protected abstract bool computeNewPosition();
+        protected abstract bool goToNextPosition(Enemy[] enemies);
 
-        public bool goForward()
+        public bool goForward(Enemy[] enemies)
         {
             erase();
-            bool notDestroyed = computeNewPosition();
+            bool notDestroyed = goToNextPosition(enemies);
 
-            if(notDestroyed)
+            if (notDestroyed)
             {
                 display();
             }
-            
+
 
             return notDestroyed;
         }
-        
+
     }
 }

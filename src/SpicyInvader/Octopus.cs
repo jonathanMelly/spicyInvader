@@ -9,9 +9,9 @@ namespace SpicyInvader
 {
     public class Octopus : Enemy
     {
-        private const string SPRITE = "ıÀ";
+        private const string SPRITE = "o";
 
-        public Octopus(short xPosition, short yPosition) : base(xPosition, yPosition)
+        public Octopus(ConsoleWrapper console, int xPosition, int yPosition) : base(console, xPosition, yPosition)
         {
             //Parent
         }
@@ -19,6 +19,11 @@ namespace SpicyInvader
         public override string getSprite()
         {
             return SPRITE;
+        }
+
+        protected override ConsoleColor getColor()
+        {
+            return ConsoleColor.Gray;
         }
     }
 }

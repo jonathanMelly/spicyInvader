@@ -22,9 +22,27 @@ namespace SpicyInvader
         //Inversément proportionnel
         private const int MISSILE_SPEED = 4;
 
+        //Points pour un ennemi standard
+        internal const int DEFAULT_REWARD = 20;
+
+        private const int ENEMY_LINE_COUNT = 11;
+        private const int LINES_OCTOPUS = 2;
+        private const int LINES_MEDUSA = 2;
+        private const int LINES_CRAB = 1;
+
+        //TODO UFO
+
         //Elements du jeu
         private Level level;
         private Ship ship;
+        private Enemy[] enemies = new Enemy[(LINES_OCTOPUS + LINES_MEDUSA + LINES_CRAB) * ENEMY_LINE_COUNT];
+
+        ConsoleWrapper console;
+
+        public Game(ConsoleWrapper console)
+        {
+            this.console = console;
+        }
 
         public void start()
         {
@@ -35,9 +53,6 @@ namespace SpicyInvader
 
             //Compte les affichages
             int frame = 0;
-
-            //Affichage initial
-            ship.display();
 
             while (!gameOver)
             {
@@ -66,18 +81,19 @@ namespace SpicyInvader
                             break;
                     }
 
-                    
+
 
                 }
 
                 //Mouvement des ennemis
+
 
                 //Mouvement du missile ami
                 if (frame % MISSILE_SPEED == 0)
                 {
                     if (ship.isMissileFired())
                     {
-                        ship.getMissile().goForward();
+                        ship.getMissile().goForward(enemies);
                     }
                 }
 
@@ -95,16 +111,42 @@ namespace SpicyInvader
         }
 
 
-        private void initialize()
+        public void initialize()
         {
 
-            Console.SetWindowSize(50, 20);
-            Console.CursorVisible = false;
+            console.setWindowSize(50, 20);
+            console.setCursorVisible(false);
 
             level = new Level();
-            ship = new Ship(Console.WindowWidth / 2,
-                            Console.WindowHeight,
-                            Console.WindowWidth);
+            ship = new Ship(console);
+
+            //Placement des objets initiaux
+            ship.display();
+
+            //Ennemis
+            int initialY = 0;
+            int initialX = 0;
+
+            //Octopus
+            for (int i = 0; i < LINES_OCTOPUS; i++)
+            {
+                for (int j = 0; j < ENEMY_LINE_COUNT; j++)
+                {
+                    enemies[i+j] = new Octopus(console,initialX + j, initialY + i);
+                    enemies[i+j].display();
+                }
+            }
+
+            /*
+            for (int i = 0; i < LINES_MEDUSA; i++)
+            {
+                for (int j = 0; j < enemies.GetLength(1); j++)
+                {
+                    enemies[i, j] = new Medusa(initialX + j, initialY + i);
+                    enemies[i, j].display();
+                }
+            }
+            */
         }
 
     }

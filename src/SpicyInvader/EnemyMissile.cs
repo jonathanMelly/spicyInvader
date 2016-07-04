@@ -9,7 +9,7 @@ namespace SpicyInvader
 {
     public class EnemyMissile : Missile
     {
-        public EnemyMissile(short xPosition, short yPosition) : base(xPosition, yPosition)
+        public EnemyMissile(ConsoleWrapper console,short xPosition, short yPosition) : base(console,xPosition, yPosition)
         {
         }
 
@@ -24,7 +24,7 @@ namespace SpicyInvader
         }
 
 
-        protected override bool computeNewPosition()
+        protected override bool goToNextPosition(Enemy[] enemies)
         {
             throw new NotImplementedException();
         }

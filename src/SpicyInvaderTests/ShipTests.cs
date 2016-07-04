@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SpicyInvader;
-using System;
-
+using SpicyInvaderTests;
 
 namespace SpicyInvader.Tests
 {
@@ -11,7 +9,14 @@ namespace SpicyInvader.Tests
         private const int WINDOW_WIDTH = 20;
         Ship ship;
 
+        ConsoleWrapper console;
 
+        [TestInitialize()]
+        public void intialize()
+        {
+            console = new TestConsole(WINDOW_WIDTH,50);
+
+        }
 
         [TestMethod()]
         public void ShipTest_assertOnly1MissileCanBeFiredAtTheSameTime()
@@ -94,7 +99,7 @@ namespace SpicyInvader.Tests
         //Aides aux tests
         private void createShipAtPosition10WithLimitAt20()
         {
-            ship = new Ship(10, 0, WINDOW_WIDTH);
+            ship = new Ship(console);
         }
 
         [TestMethod()]

@@ -8,17 +8,18 @@ namespace SpicyInvader
     /// <summary>
     /// Gestion des éléments communs à tous les ennemis
     /// </summary>
-    public abstract class Enemy
+    public abstract class Enemy : StringDisplayable2D
     {
-        short xPosition;
-        short yPosition;
+        
 
-        public abstract string getSprite();
-
-        public Enemy(short xPosition, short yPosition)
+        public Enemy(ConsoleWrapper console,int x, int y) : base(console, x, y)
         {
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            //Parent
+        }
+
+        public int getReward()
+        {
+            return Game.DEFAULT_REWARD;
         }
     }
 }

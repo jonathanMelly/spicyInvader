@@ -17,17 +17,24 @@ namespace SpicyInvader
 
         private FriendlyMissile missile;
 
+        private int score = 0;
+
 
         /// <summary>
         /// Création d'un vaisseau avec une position et une limite de déplacement
         /// </summary>
         /// <param name="rightLimit"></param>
-        public Ship(int initialXPosition, int yPosition, int rightLimit) : base(initialXPosition, yPosition)
+        public Ship(ConsoleWrapper console) : base(console, console.getWindowWidth()/2, console.getWindowHeight()-1)
         {
-            this.rightLimit = Convert.ToInt16(rightLimit);
+            this.rightLimit = Convert.ToInt16(console.getWindowWidth());
         }
 
-        internal void setMissileDestroyed()
+        internal void addScore(int points)
+        {
+            score += points;
+        }
+
+        internal void setMissileExploded()
         {
             missile = null;
         }
@@ -40,7 +47,7 @@ namespace SpicyInvader
         {
             if (missile == null)
             {
-                missile = new FriendlyMissile(this, Convert.ToInt16(x + SPRITE.Length / 2),
+                missile = new FriendlyMissile(console,this, Convert.ToInt16(x + SPRITE.Length / 2),
                                               Convert.ToInt16(y - 1));
 
                 missile.display();

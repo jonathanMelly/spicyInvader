@@ -1,16 +1,22 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SpicyInvader;
+using SpicyInvaderTests;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
 
 namespace SpicyInvader.Tests
 {
     [TestClass()]
     public class GameTests
     {
+        ConsoleWrapper console;
+
+        [TestInitialize]
+        public void init()
+        {
+            console = new TestConsole(10,10);
+        }
+
         [TestMethod()]
         public void GameTest_assertGameCreationOK()
         {
@@ -20,30 +26,12 @@ namespace SpicyInvader.Tests
             Game game;
 
             //Act
-            game = new Game();
+            game = new Game(console);
+            game.initialize();
 
             //Assert
             Assert.IsNotNull(game);
             
-        }
-
-        [TestMethod()]
-        [ExpectedException(typeof(ApplicationException),
-            "No rendering engine defined.\nPlease call method 'setRenderingEngine'")]
-        public void GameTest_assertGameCreationWithoutRenderingKO()
-        {
-
-            //Arrange
-            Console.Write("nop");
-            Game game;
-
-            //Act
-            game = new Game();
-
-            //Assert
-            //Devrait envoyer une exception
-            game.start();
-
         }
     }
 }

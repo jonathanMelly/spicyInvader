@@ -15,7 +15,7 @@ namespace SpicyInvader.Tests
         public void FriendlyFireTest_assertSymbolIsValid()
         {
             //Arrange
-            FriendlyMissile missile = new FriendlyMissile(null,0,0);
+            FriendlyMissile missile = new FriendlyMissile(null,null,0,0);
 
             //Act
             string symbol = missile.getSprite();
