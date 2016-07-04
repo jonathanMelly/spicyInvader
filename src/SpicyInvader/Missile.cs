@@ -3,6 +3,8 @@
 //Auteur : JMY/CHA
 //Description : Description communes à tous les ennemis
 
+using System;
+
 namespace SpicyInvader
 {
     public abstract class Missile
@@ -17,16 +19,35 @@ namespace SpicyInvader
         }
 
         public abstract string getSprite();
+        public abstract ConsoleColor getColor();
+        protected abstract bool computeNewPosition();
 
-
-
-        public short getXPosition()
+        public bool goForward()
         {
-            return xPosition;
+            erase();
+            bool notDestroyed = computeNewPosition();
+
+            if(notDestroyed)
+            {
+                display();
+            }
+            
+
+            return notDestroyed;
         }
-        public short getYPosition()
+
+        public void erase()
         {
-            return yPosition;
+            Console.SetCursorPosition(xPosition, yPosition);
+            Console.Write(new String(' ',getSprite().Length));
         }
+
+        public void display()
+        {
+            Console.SetCursorPosition(xPosition, yPosition);
+            Console.Write(getSprite());
+        }
+
+        
     }
 }

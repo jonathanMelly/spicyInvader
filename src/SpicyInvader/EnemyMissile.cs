@@ -13,7 +13,18 @@ namespace SpicyInvader
         {
         }
 
+        public override ConsoleColor getColor()
+        {
+            throw new NotImplementedException();
+        }
+
         public override string getSprite()
+        {
+            throw new NotImplementedException();
+        }
+
+
+        protected override bool computeNewPosition()
         {
             throw new NotImplementedException();
         }

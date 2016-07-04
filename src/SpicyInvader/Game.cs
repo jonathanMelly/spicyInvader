@@ -25,11 +25,10 @@ namespace SpicyInvader
         //Elements du jeu
         private Level level;
         private Ship ship;
-        private RenderingEngine renderingEngine;
 
         public void start()
         {
-            //
+            //Initilisation des objets utiles pour la boucle de jeu
             initialize();
 
             bool gameOver = false;
@@ -38,23 +37,12 @@ namespace SpicyInvader
             int frame = 0;
 
             //Affichage initial
-            renderingEngine.display(ship);
+            ship.display();
 
             while (!gameOver)
             {
 
-                //debug
-                //Console.SetCursorPosition(5, 5);
-                //Console.Write("Score : "+i++);
-
-                //Mise à jour de l'affichage
-                //renderingEngine.refresh();
-
-
-
-
                 //Mouvement du vaisseau selon entrée utilisateur
-                bool shipMoved = false;
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo keyInfo = Console.ReadKey(true);
@@ -63,12 +51,10 @@ namespace SpicyInvader
                     {
                         case ConsoleKey.LeftArrow:
                             ship.moveLeft();
-                            shipMoved = true;
                             break;
 
                         case ConsoleKey.RightArrow:
                             ship.moveRight();
-                            shipMoved = true;
                             break;
 
                         case ConsoleKey.Spacebar:
@@ -80,32 +66,21 @@ namespace SpicyInvader
                             break;
                     }
 
+                    
+
                 }
 
                 //Mouvement des ennemis
 
                 //Mouvement du missile ami
-                bool friendlyMissileMoved = false;
                 if (frame % MISSILE_SPEED == 0)
                 {
                     if (ship.isMissileFired())
                     {
-                        friendlyMissileMoved = ship.getMissile().goForward();
-
-                        //Missile détruit
-                        if (!friendlyMissileMoved)
-                        {
-                            drawObjects();
-                        }
+                        ship.getMissile().goForward();
                     }
                 }
 
-
-                //Mise à jour de l'affichage
-                if (shipMoved || friendlyMissileMoved)
-                {
-                    drawObjects();
-                }
 
                 //Temporisation
                 if (frame++ > int.MaxValue - 1)
@@ -119,39 +94,18 @@ namespace SpicyInvader
 
         }
 
-        //TODO draw only 1 time per frame
-        private void drawObjects()
-        {
-            //Ecran à refaire
-            renderingEngine.clear();
-
-            //Redessine le vaisseau
-            renderingEngine.display(ship);
-
-            //Redessine si besoin le missile
-            if (ship.isMissileFired())
-            {
-                renderingEngine.display(ship.getMissile());
-            }
-        }
 
         private void initialize()
         {
-            if (renderingEngine == null)
-            {
-                throw new ApplicationException("No rendering engine defined.\nPlease call method 'setRenderingEngine'");
-            }
+
+            Console.SetWindowSize(50, 20);
+            Console.CursorVisible = false;
 
             level = new Level();
-            ship = new Ship(Convert.ToInt16(renderingEngine.getWindowWidth() / 2),
-                            Convert.ToInt16(renderingEngine.getWindowHeight()),
-                            Convert.ToInt16(renderingEngine.getWindowWidth())
-                            );
+            ship = new Ship(Console.WindowWidth / 2,
+                            Console.WindowHeight,
+                            Console.WindowWidth);
         }
 
-        public void setRenderingEngine(RenderingEngine renderingEngine)
-        {
-            this.renderingEngine = renderingEngine;
-        }
     }
 }

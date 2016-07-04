@@ -15,7 +15,7 @@ namespace SpicyInvader
         private readonly short yPosition;
 
         //Dessin du vaisseau
-        private const string SPRITE="├¤┤";
+        private const string SPRITE = "├¤┤";
 
         private FriendlyMissile missile;
 
@@ -25,12 +25,14 @@ namespace SpicyInvader
         /// </summary>
         /// <param name="initialXPosition"></param>
         /// <param name="rightLimit"></param>
-        public Ship(short initialXPosition,short yPosition,short rightLimit)
+        public Ship(int initialXPosition, int yPosition, int rightLimit)
         {
-            this.xPosition = initialXPosition;
-            this.rightLimit = rightLimit;
-            this.yPosition = yPosition;
+            this.xPosition = Convert.ToInt16(initialXPosition);
+            this.rightLimit = Convert.ToInt16(rightLimit);
+            this.yPosition = Convert.ToInt16(yPosition);
         }
+
+
 
         internal void setMissileDestroyed()
         {
@@ -45,8 +47,10 @@ namespace SpicyInvader
         {
             if (missile == null)
             {
-                missile = new FriendlyMissile(this,Convert.ToInt16(xPosition+SPRITE.Length/2),
-                                              Convert.ToInt16(yPosition-1));
+                missile = new FriendlyMissile(this, Convert.ToInt16(xPosition + SPRITE.Length / 2),
+                                              Convert.ToInt16(yPosition - 1));
+
+                missile.display();
                 return true;
             }
             return false;
@@ -59,9 +63,11 @@ namespace SpicyInvader
         {
             if (xPosition > 0)
             {
+                erase();
                 xPosition--;
             }
-            
+            display();
+
         }
 
         /// <summary>
@@ -69,23 +75,28 @@ namespace SpicyInvader
         /// </summary>
         public void moveRight()
         {
-            if (xPosition < rightLimit-SPRITE.Length)
+            if (xPosition < rightLimit - SPRITE.Length)
             {
+                erase();
                 xPosition++;
             }
+            display();
+        }
+
+        public void erase()
+        {
+            Console.SetCursorPosition(Convert.ToInt32(xPosition), yPosition);
+            Console.Write(new String(' ',getSprite().Length));
+        }
+
+        public void display()
+        {
+            Console.SetCursorPosition(Convert.ToInt32(xPosition), yPosition);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(getSprite());
         }
 
         //Accesseurs
-        public short getXPosition()
-        {
-            return xPosition;
-        }
-
-        public short getYPosition()
-        {
-            return yPosition;
-        }
-
         public string getSprite()
         {
             return SPRITE;
@@ -99,6 +110,11 @@ namespace SpicyInvader
         public FriendlyMissile getMissile()
         {
             return missile;
+        }
+
+        public short getXPosition()
+        {
+            return xPosition;
         }
     }
 }
