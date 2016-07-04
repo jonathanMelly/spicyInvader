@@ -8,10 +8,17 @@ namespace SpicyInvader
     /// <summary>
     /// Gestion des éléments communs à tous les ennemis
     /// </summary>
-    public class Enemy : EnemyMissile
+    public abstract class Enemy
     {
-        public Enemy(short xPosition, short yPosition) : base(xPosition, yPosition)
+        short xPosition;
+        short yPosition;
+
+        public abstract string getSprite();
+
+        public Enemy(short xPosition, short yPosition)
         {
+            this.xPosition = xPosition;
+            this.yPosition = yPosition;
         }
     }
 }

@@ -7,19 +7,14 @@ using System;
 
 namespace SpicyInvader
 {
-    public abstract class Missile
+    public abstract class Missile:StringDisplayable2D
     {
-        protected short xPosition;
-        protected short yPosition;
 
-        public Missile(short xPosition,short yPosition)
+        public Missile(int x, int y) : base(x, y)
         {
-            this.xPosition = xPosition;
-            this.yPosition = yPosition;
+            //Parent
         }
 
-        public abstract string getSprite();
-        public abstract ConsoleColor getColor();
         protected abstract bool computeNewPosition();
 
         public bool goForward()
@@ -35,19 +30,6 @@ namespace SpicyInvader
 
             return notDestroyed;
         }
-
-        public void erase()
-        {
-            Console.SetCursorPosition(xPosition, yPosition);
-            Console.Write(new String(' ',getSprite().Length));
-        }
-
-        public void display()
-        {
-            Console.SetCursorPosition(xPosition, yPosition);
-            Console.Write(getSprite());
-        }
-
         
     }
 }

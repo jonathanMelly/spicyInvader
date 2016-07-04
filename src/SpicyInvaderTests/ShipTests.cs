@@ -34,13 +34,13 @@ namespace SpicyInvader.Tests
         {
             //Arrange
             createShipAtPosition10WithLimitAt20();
-            short initialPosition = ship.getXPosition();
+            short initialPosition = ship.getX();
 
             //Act
             ship.moveLeft();
 
             //Assert
-            Assert.AreEqual(initialPosition - Game.SHIP_SPEED, ship.getXPosition());
+            Assert.AreEqual(initialPosition - Game.SHIP_SPEED, ship.getX());
         }
 
         [TestMethod()]
@@ -57,7 +57,7 @@ namespace SpicyInvader.Tests
 
 
             //Assert
-            Assert.AreEqual(0, ship.getXPosition());
+            Assert.AreEqual(0, ship.getX());
         }
 
         [TestMethod()]
@@ -65,13 +65,13 @@ namespace SpicyInvader.Tests
         {
             //Arrange
             createShipAtPosition10WithLimitAt20();
-            short initialPosition = ship.getXPosition();
+            short initialPosition = ship.getX();
 
             //Act
             ship.moveRight();
 
             //Assert
-            Assert.AreEqual(initialPosition + Game.SHIP_SPEED, ship.getXPosition());
+            Assert.AreEqual(initialPosition + Game.SHIP_SPEED, ship.getX());
         }
 
         [TestMethod()]
@@ -88,7 +88,7 @@ namespace SpicyInvader.Tests
 
 
             //Assert
-            Assert.AreEqual(WINDOW_WIDTH - ship.getSprite().Length, ship.getXPosition());
+            Assert.AreEqual(WINDOW_WIDTH - ship.getSprite().Length, ship.getX());
         }
 
         //Aides aux tests

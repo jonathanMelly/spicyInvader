@@ -13,7 +13,7 @@ namespace SpicyInvader
 
         private readonly Ship ship;
 
-        public FriendlyMissile(Ship ship, short xPosition, short yPosition) : base(xPosition, yPosition)
+        public FriendlyMissile(Ship ship, short x, short y) : base(x, y)
         {
             this.ship = ship;
         }
@@ -22,9 +22,9 @@ namespace SpicyInvader
         protected override bool computeNewPosition()
         {
             //Missile meurt en haut de l'écran
-            if (yPosition > 1)
+            if (y > 1)
             {
-                yPosition--;
+                y--;
                 return true;
             }
             ship.setMissileDestroyed();
@@ -37,9 +37,9 @@ namespace SpicyInvader
             return SPRITE;
         }
 
-        public override ConsoleColor getColor()
+        protected override ConsoleColor getColor()
         {
-            return ConsoleColor.Green;
+            return ConsoleColor.Red;
         }
     }
 }

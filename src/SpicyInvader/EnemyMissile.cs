@@ -13,7 +13,7 @@ namespace SpicyInvader
         {
         }
 
-        public override ConsoleColor getColor()
+        protected override ConsoleColor getColor()
         {
             throw new NotImplementedException();
         }
