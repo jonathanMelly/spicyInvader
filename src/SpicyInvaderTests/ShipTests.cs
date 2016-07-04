@@ -8,6 +8,7 @@ namespace SpicyInvader.Tests
     [TestClass()]
     public class ShipTests
     {
+        private const int WINDOW_WIDTH = 20;
         Ship ship;
 
         
@@ -62,13 +63,38 @@ namespace SpicyInvader.Tests
         [TestMethod()]
         public void ShipTest_assertMoveRight()
         {
-            throw new NotImplementedException();
+            //Arrange
+            createShipAtPosition10WithLimitAt20();
+            short initialPosition = ship.getPosition();
+
+            //Act
+            ship.moveRight();
+
+            //Assert
+            Assert.AreEqual(initialPosition + Game.SHIP_SPEED, ship.getPosition());
+        }
+
+        [TestMethod()]
+        public void ShipTest_assertMoveRightUntilEndOfScreen()
+        {
+            //Arrange
+            createShipAtPosition10WithLimitAt20();
+
+            //Act
+            for (int i = 0; i < 50; i++)
+            {
+                ship.moveRight();
+            }
+
+
+            //Assert
+            Assert.AreEqual(WINDOW_WIDTH - ship.getSprite().Length, ship.getPosition());
         }
 
         //Aides aux tests
         private void createShipAtPosition10WithLimitAt20()
         {
-            ship = new Ship(10,20);
+            ship = new Ship(10, WINDOW_WIDTH);
         }
     }
 }

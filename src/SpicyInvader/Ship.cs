@@ -41,7 +41,11 @@ namespace SpicyInvader
         /// </summary>
         public void moveLeft()
         {
-            throw new NotImplementedException();
+            if (xPosition > 0)
+            {
+                xPosition--;
+            }
+            
         }
 
         /// <summary>
@@ -49,7 +53,10 @@ namespace SpicyInvader
         /// </summary>
         public void moveRight()
         {
-            throw new NotImplementedException();
+            if (xPosition < rightLimit-SPRITE.Length)
+            {
+                xPosition++;
+            }
         }
 
         //Accesseurs

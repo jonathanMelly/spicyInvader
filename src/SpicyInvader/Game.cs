@@ -33,7 +33,32 @@ namespace SpicyInvader
 
         public void start()
         {
-            renderingEngine.display(ship);
+            while(true)
+            {
+                //Nettoyage de l'écran pour l'ancien frame
+                renderingEngine.clear();
+
+                //Affichage des éléments
+                renderingEngine.display(ship);
+
+                //Mouvement du vaisseau selon entrée utilisateur
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                switch(keyInfo.Key)
+                {
+                    case ConsoleKey.LeftArrow:
+                        ship.moveLeft();
+                        break;
+
+                    case ConsoleKey.RightArrow:
+                        ship.moveRight();
+                        break;
+
+                    default:
+                        //Rien à faire pour les autres touches
+                        break;
+                }
+            }
+            
         }
     }
 }

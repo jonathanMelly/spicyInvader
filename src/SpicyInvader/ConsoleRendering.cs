@@ -22,7 +22,7 @@ namespace SpicyInvader
         public void display(Ship ship)
         {
             Console.SetCursorPosition(Convert.ToInt32(ship.getPosition()), 50);
-            Console.WriteLine(ship.getSprite());
+            Console.Write(ship.getSprite());
         }
 
         public void display(Missile missile)
