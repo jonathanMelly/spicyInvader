@@ -31,7 +31,9 @@ namespace SpicyInvader
                     ship.addScore(enemy.getReward());
                     enemy.erase();
                     enemies[i] = null;
-                    return missileExploded();
+
+                    missileExploded();
+                    return false;
                 }
             }
 
@@ -41,15 +43,18 @@ namespace SpicyInvader
                 y--;
                 return true;
             }
-
-            return missileExploded();
+            else
+            {
+                missileExploded();
+                return false;
+            }
 
         }
 
-        private bool missileExploded()
+        private void missileExploded()
         {
             ship.setMissileExploded();
-            return false;
+            
         }
 
         public override string getSprite()

@@ -97,6 +97,10 @@ namespace SpicyInvader
                     }
                 }
 
+                //Score
+                console.setForegroundColor(ConsoleColor.White);
+                console.setCursorPosition(0, 0);
+                console.write("Score : " + ship.getScore());
 
                 //Temporisation
                 if (frame++ > int.MaxValue - 1)
@@ -124,16 +128,19 @@ namespace SpicyInvader
             ship.display();
 
             //Ennemis
-            int initialY = 0;
-            int initialX = 0;
+            int initialY = 5;
+            int initialX = (console.getWindowWidth() - ENEMY_LINE_COUNT) / 2;
 
             //Octopus
+            int elements = 0;
             for (int i = 0; i < LINES_OCTOPUS; i++)
             {
                 for (int j = 0; j < ENEMY_LINE_COUNT; j++)
                 {
-                    enemies[i+j] = new Octopus(console,initialX + j, initialY + i);
-                    enemies[i+j].display();
+                    enemies[elements] = new Octopus(console, initialX + j, initialY + i);
+                    enemies[elements].display();
+
+                    elements++;
                 }
             }
 

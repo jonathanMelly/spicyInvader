@@ -20,15 +20,15 @@ namespace SpicyInvader
         public bool goForward(Enemy[] enemies)
         {
             erase();
-            bool notDestroyed = goToNextPosition(enemies);
+            bool missileHasMoved = goToNextPosition(enemies);
 
-            if (notDestroyed)
+            if (missileHasMoved)
             {
                 display();
             }
 
 
-            return notDestroyed;
+            return missileHasMoved;
         }
 
     }

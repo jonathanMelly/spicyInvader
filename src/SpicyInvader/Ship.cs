@@ -104,6 +104,11 @@ namespace SpicyInvader
             return missile;
         }
 
+        public int getScore()
+        {
+            return score;
+        }
+
 
     }
 }
