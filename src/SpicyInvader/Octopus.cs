@@ -7,5 +7,9 @@ namespace SpicyInvader
 {
     public class Octopus : Enemy
     {
+        public Octopus(short xPosition, short yPosition) : base(xPosition, yPosition)
+        {
+            //Parent
+        }
     }
 }

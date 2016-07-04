@@ -15,10 +15,10 @@ namespace SpicyInvader.Tests
         public void FriendlyFireTest_assertSymbolIsValid()
         {
             //Arrange
-            FriendlyMissile missile = new FriendlyMissile();
+            FriendlyMissile missile = new FriendlyMissile(null,0,0);
 
             //Act
-            string symbol = missile.getSymbol();
+            string symbol = missile.getSprite();
 
             //Assert
             Assert.AreEqual("|", symbol);

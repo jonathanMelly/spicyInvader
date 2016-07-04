@@ -5,6 +5,7 @@ namespace SpicyInvader
 
     class ConsoleRendering : RenderingEngine
     {
+
         public void clear()
         {
             Console.Clear();
@@ -21,13 +22,15 @@ namespace SpicyInvader
         /// <param name="ship">le vaisseau à dessiner</param>
         public void display(Ship ship)
         {
-            Console.SetCursorPosition(Convert.ToInt32(ship.getPosition()), 50);
+            //Vaisseau
+            Console.SetCursorPosition(Convert.ToInt32(ship.getXPosition()), ship.getYPosition());
             Console.Write(ship.getSprite());
         }
 
         public void display(Missile missile)
         {
-            throw new NotImplementedException();
+            Console.SetCursorPosition(missile.getXPosition(), missile.getYPosition());
+            Console.Write(missile.getSprite());
         }
 
         public int getWindowHeight()
@@ -38,6 +41,11 @@ namespace SpicyInvader
         public int getWindowWidth()
         {
             return Console.WindowWidth;
+        }
+
+        public void refresh()
+        {
+            Console.Out.Flush();
         }
     }
 }

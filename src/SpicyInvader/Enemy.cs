@@ -10,5 +10,8 @@ namespace SpicyInvader
     /// </summary>
     public class Enemy : EnemyMissile
     {
+        public Enemy(short xPosition, short yPosition) : base(xPosition, yPosition)
+        {
+        }
     }
 }

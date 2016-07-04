@@ -9,7 +9,11 @@ namespace SpicyInvader
 {
     public class EnemyMissile : Missile
     {
-        public override string getSymbol()
+        public EnemyMissile(short xPosition, short yPosition) : base(xPosition, yPosition)
+        {
+        }
+
+        public override string getSprite()
         {
             throw new NotImplementedException();
         }

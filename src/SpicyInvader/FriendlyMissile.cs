@@ -9,9 +9,35 @@ namespace SpicyInvader
 {
     public class FriendlyMissile : Missile
     {
-        public override string getSymbol()
+        private const string SPRITE = "|";
+
+        private readonly Ship ship;
+
+        public FriendlyMissile(Ship ship,short xPosition, short yPosition) : base(xPosition, yPosition)
         {
-            throw new NotImplementedException();
+            this.ship = ship;
         }
+
+        /// <summary>
+        /// Avance le missile à son prochain emplacement
+        /// </summary>
+        public bool goForward()
+        {
+            //Missile meurt en haut de l'écran
+            if(yPosition>0)
+            {
+                yPosition--;
+                return true;
+            }
+            ship.setMissileDestroyed();
+            return false;
+            
+        }
+
+        public override string getSprite()
+        {
+            return SPRITE;
+        }
+
     }
 }

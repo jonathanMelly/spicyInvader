@@ -7,6 +7,26 @@ namespace SpicyInvader
 {
     public abstract class Missile
     {
-        public abstract string getSymbol();
+        protected short xPosition;
+        protected short yPosition;
+
+        public Missile(short xPosition,short yPosition)
+        {
+            this.xPosition = xPosition;
+            this.yPosition = yPosition;
+        }
+
+        public abstract string getSprite();
+
+
+
+        public short getXPosition()
+        {
+            return xPosition;
+        }
+        public short getYPosition()
+        {
+            return yPosition;
+        }
     }
 }

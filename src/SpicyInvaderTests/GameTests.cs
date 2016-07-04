@@ -12,9 +12,38 @@ namespace SpicyInvader.Tests
     public class GameTests
     {
         [TestMethod()]
-        public void startTest()
+        public void GameTest_assertGameCreationOK()
         {
-            throw new NotImplementedException();
+
+            //Arrange
+            Console.Write("nop");
+            Game game;
+
+            //Act
+            game = new Game();
+
+            //Assert
+            Assert.IsNotNull(game);
+            
+        }
+
+        [TestMethod()]
+        [ExpectedException(typeof(ApplicationException),
+            "No rendering engine defined.\nPlease call method 'setRenderingEngine'")]
+        public void GameTest_assertGameCreationWithoutRenderingKO()
+        {
+
+            //Arrange
+            Console.Write("nop");
+            Game game;
+
+            //Act
+            game = new Game();
+
+            //Assert
+            //Devrait envoyer une exception
+            game.start();
+
         }
     }
 }

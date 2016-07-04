@@ -11,7 +11,7 @@ namespace SpicyInvader.Tests
         private const int WINDOW_WIDTH = 20;
         Ship ship;
 
-        
+
 
         [TestMethod()]
         public void ShipTest_assertOnly1MissileCanBeFiredAtTheSameTime()
@@ -34,13 +34,13 @@ namespace SpicyInvader.Tests
         {
             //Arrange
             createShipAtPosition10WithLimitAt20();
-            short initialPosition = ship.getPosition();
+            short initialPosition = ship.getXPosition();
 
             //Act
             ship.moveLeft();
 
             //Assert
-            Assert.AreEqual(initialPosition - Game.SHIP_SPEED, ship.getPosition());
+            Assert.AreEqual(initialPosition - Game.SHIP_SPEED, ship.getXPosition());
         }
 
         [TestMethod()]
@@ -50,14 +50,14 @@ namespace SpicyInvader.Tests
             createShipAtPosition10WithLimitAt20();
 
             //Act
-            for(int i=0;i<50;i++)
+            for (int i = 0; i < 50; i++)
             {
                 ship.moveLeft();
             }
 
 
             //Assert
-            Assert.AreEqual(0, ship.getPosition());
+            Assert.AreEqual(0, ship.getXPosition());
         }
 
         [TestMethod()]
@@ -65,13 +65,13 @@ namespace SpicyInvader.Tests
         {
             //Arrange
             createShipAtPosition10WithLimitAt20();
-            short initialPosition = ship.getPosition();
+            short initialPosition = ship.getXPosition();
 
             //Act
             ship.moveRight();
 
             //Assert
-            Assert.AreEqual(initialPosition + Game.SHIP_SPEED, ship.getPosition());
+            Assert.AreEqual(initialPosition + Game.SHIP_SPEED, ship.getXPosition());
         }
 
         [TestMethod()]
@@ -88,13 +88,26 @@ namespace SpicyInvader.Tests
 
 
             //Assert
-            Assert.AreEqual(WINDOW_WIDTH - ship.getSprite().Length, ship.getPosition());
+            Assert.AreEqual(WINDOW_WIDTH - ship.getSprite().Length, ship.getXPosition());
         }
 
         //Aides aux tests
         private void createShipAtPosition10WithLimitAt20()
         {
-            ship = new Ship(10, WINDOW_WIDTH);
+            ship = new Ship(10, 0, WINDOW_WIDTH);
+        }
+
+        [TestMethod()]
+        public void ShipTest_assertMissileFired()
+        {
+            //Arrange
+            createShipAtPosition10WithLimitAt20();
+
+            //Act
+            bool fired = ship.fire();
+
+            //Assert
+            Assert.IsTrue(fired);
         }
     }
 }

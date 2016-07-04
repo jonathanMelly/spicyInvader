@@ -8,7 +8,7 @@ namespace SpicyInvader
     /// <summary>
     /// Découplage du rendu pour facilement porter vers d'autres implémentations que la version Console
     /// </summary>
-    interface RenderingEngine
+    public interface RenderingEngine
     {
         void clear();
 
@@ -18,5 +18,6 @@ namespace SpicyInvader
         void display(Missile missile);
         void display(Ship ship);
         void display(Enemy enemy);
+        void refresh();
     }
 }
