@@ -8,6 +8,12 @@ namespace SpicyInvader
 {
     class MsDosConsole : ConsoleWrapper
     {
+		public MsDosConsole()
+		{
+			//Cleanup console (OSX compatibility)
+			Console.Clear();	
+		}
+
         public int getWindowHeight()
         {
             return Console.WindowHeight;
