@@ -20,7 +20,8 @@ namespace SpicyInvader
         private const int GAME_SPEED = 25;
 
         //Inversément proportionnel
-        private const int MISSILE_SPEED = 4;
+        private const int SHIP_MISSILE_SPEED = 4;
+        private const int ENEMY_MISSILE_SPEED = 8;
 
         //Fréquence de tir ennemi
         private const int ENEMY_MISSILE_POSSIBLE_FIRING_RATE = 50;
@@ -144,11 +145,25 @@ namespace SpicyInvader
 
 
                 //Mouvement du missile ami
-                if (frame % MISSILE_SPEED == 0)
+                if (frame % SHIP_MISSILE_SPEED == 0)
                 {
                     if (ship.isMissileFired())
                     {
                         ship.getMissile().goForward(enemies);
+                    }
+                }
+
+                //Mouvement des missiles ennemis
+                if (frame % ENEMY_MISSILE_SPEED == 0)
+                {
+
+                    foreach (Enemy enemi in enemies)
+                    {
+                        //TDOO remove null check after all enemies filled
+                        if (enemi != null && enemi.isMissileFired())
+                        {
+                            enemi.getMissile().goToNextPosition(ship);
+                        }
                     }
                 }
 

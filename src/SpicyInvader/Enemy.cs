@@ -13,7 +13,7 @@ namespace SpicyInvader
     public abstract class Enemy : StringDisplayable2D
     {
 
-        Missile missile;
+        EnemyMissile missile;
 
         public Enemy(ConsoleWrapper console,int x, int y) : base(console, x, y)
         {
@@ -28,7 +28,7 @@ namespace SpicyInvader
         {
             if (missile == null)
             {
-                missile = new EnemyMissile(console, Convert.ToInt16(x),Convert.ToInt16(y + 1));
+                missile = new EnemyMissile(console, Convert.ToInt16(x),Convert.ToInt16(y + 1),this);
 
                 missile.display();
                 return true;
@@ -39,6 +39,21 @@ namespace SpicyInvader
         public bool canFire()
         {
             return missile == null;
+        }
+
+        public bool isMissileFired()
+        {
+            return missile != null;
+        }
+
+        internal void missileMissed()
+        {
+            this.missile = null;
+        }
+
+        public EnemyMissile getMissile()
+        {
+            return missile;
         }
 
         public int getReward()

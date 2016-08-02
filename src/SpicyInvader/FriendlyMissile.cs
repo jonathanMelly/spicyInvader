@@ -18,8 +18,22 @@ namespace SpicyInvader
             this.ship = ship;
         }
 
+        //TODO merge goForward for friendly OR enemy...
+        public bool goForward(Enemy[] enemies)
+        {
+            erase();
+            bool missileHasMoved = goToNextPosition(enemies);
 
-        protected override bool goToNextPosition(Enemy[] enemies)
+            if (missileHasMoved)
+            {
+                display();
+            }
+
+
+            return missileHasMoved;
+        }
+
+        public bool goToNextPosition(Enemy[] enemies)
         {
             for (int i = 0; i < enemies.Length; i++)
             {

@@ -9,8 +9,10 @@ namespace SpicyInvader
 {
     public class EnemyMissile : Missile
     {
-        public EnemyMissile(ConsoleWrapper console,short xPosition, short yPosition) : base(console,xPosition, yPosition)
+        private Enemy enemy;
+        public EnemyMissile(ConsoleWrapper console, short xPosition, short yPosition, Enemy enemy) : base(console, xPosition, yPosition)
         {
+              this.enemy = enemy;
         }
 
         protected override ConsoleColor getColor()
@@ -24,9 +26,25 @@ namespace SpicyInvader
         }
 
 
-        protected override bool goToNextPosition(Enemy[] enemies)
+        public void goToNextPosition(Ship ship)
         {
-            throw new NotImplementedException();
+            this.erase();
+            y++;
+
+            if (x == ship.getX() && y == ship.getY())
+            {
+                //TODO perdre une vie
+                //ship.
+            }
+            //Missile n'a pas touché  le vaisseau
+            else if( y > ship.getY())
+            {
+                enemy.missileMissed();
+            }
+            else
+            {
+                this.display();
+            }
         }
     }
 }

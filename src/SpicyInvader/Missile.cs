@@ -15,21 +15,7 @@ namespace SpicyInvader
             //Parent
         }
 
-        protected abstract bool goToNextPosition(Enemy[] enemies);
-
-        public bool goForward(Enemy[] enemies)
-        {
-            erase();
-            bool missileHasMoved = goToNextPosition(enemies);
-
-            if (missileHasMoved)
-            {
-                display();
-            }
-
-
-            return missileHasMoved;
-        }
+        
 
     }
 }
