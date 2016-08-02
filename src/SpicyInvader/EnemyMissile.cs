@@ -15,12 +15,12 @@ namespace SpicyInvader
 
         protected override ConsoleColor getColor()
         {
-            throw new NotImplementedException();
+            return ConsoleColor.Red;
         }
 
         public override string getSprite()
         {
-            throw new NotImplementedException();
+            return "°";
         }
 
 
