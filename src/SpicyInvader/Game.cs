@@ -16,6 +16,9 @@ namespace SpicyInvader
         //Vitesse horizontale du vaisseau
         public const byte SHIP_SPEED = 1;
 
+        //Vitesse des ennemis
+        public const byte ENEMY_SPEED = 100;
+
         //Vitesse du jeu, ATTENTION ceci est dépendant du CPU et à ajuster selon la machine cible
         private const int GAME_SPEED = 25;
 
@@ -163,6 +166,19 @@ namespace SpicyInvader
                         if (enemi != null && enemi.isMissileFired())
                         {
                             enemi.getMissile().goToNextPosition(ship);
+                        }
+                    }
+                }
+
+                //Mouvement des ennemis
+                if (frame % ENEMY_SPEED == 0)
+                {
+
+                    foreach (Enemy enemi in enemies)
+                    {
+                        if (enemi != null)
+                        {
+                            enemi.scrollDown();
                         }
                     }
                 }

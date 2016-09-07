@@ -65,8 +65,8 @@ namespace SpicyInvader
             {
                 erase();
                 x--;
+                display();
             }
-            display();
 
         }
 

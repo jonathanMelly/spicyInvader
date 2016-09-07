@@ -37,7 +37,7 @@ namespace SpicyInvader
                 //ship.
             }
             //Missile n'a pas touché  le vaisseau
-            else if( y > ship.getY())
+            else if( y >= ship.getY())
             {
                 enemy.missileMissed();
             }

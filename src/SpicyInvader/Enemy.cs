@@ -15,7 +15,7 @@ namespace SpicyInvader
 
         EnemyMissile missile;
 
-        public Enemy(ConsoleWrapper console,int x, int y) : base(console, x, y)
+        public Enemy(ConsoleWrapper console, int x, int y) : base(console, x, y)
         {
             //Parent
         }
@@ -28,12 +28,24 @@ namespace SpicyInvader
         {
             if (missile == null)
             {
-                missile = new EnemyMissile(console, Convert.ToInt16(x),Convert.ToInt16(y + 1),this);
+                missile = new EnemyMissile(console, Convert.ToInt16(x), Convert.ToInt16(y + 1), this);
 
                 missile.display();
                 return true;
             }
             return false;
+        }
+
+        public void scrollDown()
+        {
+            if (y < console.getWindowHeight())
+            {
+
+                erase();
+                y++;
+                display();
+            }
+
         }
 
         public bool canFire()
